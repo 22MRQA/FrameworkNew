@@ -18,7 +18,6 @@ public class TestInit {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
     }
 
     @AfterMethod

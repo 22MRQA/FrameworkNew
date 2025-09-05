@@ -23,6 +23,7 @@ public class HomePageTest extends TestInit {
 
     @Test
     public void checkCatalogGamerGoodsButton() {
+
         HomePage homePage = new HomePage(driver);
         ProductsForGamersPage productsForGamersPage = new ProductsForGamersPage(driver);
 

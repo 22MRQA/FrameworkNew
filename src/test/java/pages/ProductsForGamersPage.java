@@ -20,7 +20,8 @@ public class ProductsForGamersPage extends BasePage {
         return firstGameCosolesButton().getText();
     }
 
-    public boolean firstGameCosolesButtonDisplyaed(){
+    public boolean firstGameCosolesButtonDisplyaed() {
         return isElementDisplayed(firstGameCosolesButton());
     }
+
 }
