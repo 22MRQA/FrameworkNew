@@ -12,16 +12,16 @@ public class ProductsForGamersPage extends BasePage {
 
     private final String FIRST_ELEMENT_SECTION_GAME_CONSOLES = "(//a[@class='head-nav-a'])[1]";
 
-    public WebElement firstGameCosolesButton() {
+    public WebElement firstGameConsolesButton() {
         return visibilityOfElementByXpath(FIRST_ELEMENT_SECTION_GAME_CONSOLES);
     }
 
-    public String getNameFirstGameCosolesButton() {
-        return firstGameCosolesButton().getText();
+    public String getNameFirstGameConsolesButton() {
+        return firstGameConsolesButton().getText();
     }
 
-    public boolean firstGameCosolesButtonDisplyaed() {
-        return isElementDisplayed(firstGameCosolesButton());
+    public boolean firstGameConsolesButtonDisplayed() {
+        return isElementDisplayed(firstGameConsolesButton());
     }
 
 }
