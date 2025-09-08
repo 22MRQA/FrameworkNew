@@ -13,11 +13,13 @@ public class GoodsPage extends BasePage {
     private final String PRODUCT_HEADER_TITLE = "//h1[@class='p-view__header-title']";
 
     // WEB ELEMENTS
+
     public WebElement productTitle() {
         return visibilityOfElementByXpath(PRODUCT_HEADER_TITLE);
     }
 
     //ACTIONS WITH ELEMENTS
+
     public String getNameProductHeaderTitle() {
        return productTitle().getText();
     }

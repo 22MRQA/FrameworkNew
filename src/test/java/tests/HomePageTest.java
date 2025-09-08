@@ -43,7 +43,7 @@ public class HomePageTest extends TestInit {
     }
 
     @Test
-    public void productNameShouldMatchInSearchResultsAndProductPage_ForAirPods3() {
+    public void productNameShouldMatchInSearchResultsAndProductPageForAirPods3() {
 
         HomePage homePage = new HomePage(driver);
         SearchResultAirPodsPage searchResultAirPodsPagePage = new SearchResultAirPodsPage(driver);
