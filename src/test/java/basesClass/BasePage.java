@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 // будемо зберігати методи які будеть взаємодіяти з нашою пейджею (знаходити елементи, клікати, вводити текст, виятгувати текст)
 // всі методі будуть абстрактні, ніякі значення туди передаватися не будуть.
@@ -19,8 +20,16 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
+    public BasePage() {
+    }
+
     public WebElement visibilityOfElementByXpath(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    public List<WebElement> visibilityOfElementsByXpath(String locator) {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locator)));
+        return driver.findElements(By.xpath(locator));
     }
 
     public void clikElement(WebElement element) {

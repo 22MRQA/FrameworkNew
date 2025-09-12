@@ -1,6 +1,8 @@
 package tests;
 
 import basesClass.TestInit;
+import com.beust.ah.A;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -98,4 +100,54 @@ public class HomePageTest extends TestInit {
 
     }
 
+    @Test
+    public void checkResultSearchField() {
+
+        HomePage homePage = new HomePage(driver);
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(driver);
+
+        String sumsungTV = "Телевізор Samsung";
+        int expectedSizeProdukts = 60;
+
+        openUrl(alloUrl);
+
+        homePage.enterValueSearchInput(sumsungTV);
+        homePage.clickSearchButton();
+
+        searchResultSamsungTV.viewModeButtonDisplayed();
+        int sizeProducts = searchResultSamsungTV.nameSearchedProduct().size();
+
+        Assert.assertEquals(sizeProducts, expectedSizeProdukts);
+
+        for (WebElement element : searchResultSamsungTV.nameSearchedProduct()) {
+            Assert.assertTrue(element.getText().contains(sumsungTV));
+        }
+
+    }
+
+    @Test
+    public void checkSamsungTVSearchCommentsCount() {
+
+        HomePage homePage = new HomePage(driver);
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(driver);
+
+        String sumsungTV = "Телевізор Samsung";
+        int expectedNumberComments = 27;
+
+        openUrl(alloUrl);
+
+        homePage.enterValueSearchInput(sumsungTV);
+        homePage.clickSearchButton();
+
+        searchResultSamsungTV.viewModeButtonDisplayed();
+
+
+        for (WebElement element : searchResultSamsungTV.comentsNumbersButton()) {
+            String numberComment = element.getText();
+            int number = Integer.parseInt(numberComment);
+            if(number > expectedNumberComments){
+                System.out.println(number);
+            }
+        }
+    }
 }
