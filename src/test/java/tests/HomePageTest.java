@@ -1,6 +1,7 @@
 package tests;
 
 import basesClass.TestInit;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -12,7 +13,7 @@ public class HomePageTest extends TestInit {
     @Test
     public void checkCatalogButton() {
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
 
         openUrl(alloUrl);
 
@@ -23,8 +24,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void checkCatalogGamerGoodsButton() {
 
-        HomePage homePage = new HomePage(driver);
-        ProductsForGamersPage productsForGamersPage = new ProductsForGamersPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        ProductsForGamersPage productsForGamersPage = new ProductsForGamersPage(getDriver());
 
         openUrl(alloUrl);
 
@@ -45,11 +46,11 @@ public class HomePageTest extends TestInit {
     @Test
     public void productNameShouldMatchInSearchResultsAndProductPageForAirPods3() {
 
-        HomePage homePage = new HomePage(driver);
-        SearchResultAirPodsPage searchResultAirPodsPagePage = new SearchResultAirPodsPage(driver);
-        GoodsPage goodsPage = new GoodsPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        SearchResultAirPodsPage searchResultAirPodsPagePage = new SearchResultAirPodsPage(getDriver());
+        GoodsPage goodsPage = new GoodsPage(getDriver());
 
-        String airPods = "AirPods 3";
+        String airPods = "Навушники Apple AirPods Pro 3 (MFHP4ZE/A) White";
 
         openUrl(alloUrl);
 
@@ -59,6 +60,7 @@ public class HomePageTest extends TestInit {
         homePage.clickSearchButton();
 
         String actualNameFirstProductCard = searchResultAirPodsPagePage.getNameFirstProductCardAirPods();
+        System.out.println(actualNameFirstProductCard);
         Assert.assertTrue(actualNameFirstProductCard.contains(airPods));
 
         searchResultAirPodsPagePage.clickFirstProductCardAirPods();
@@ -71,8 +73,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void verifyDeliveryAndPaymentPageViaBuyersMenu() {
 
-        HomePage homePage = new HomePage(driver);
-        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(getDriver());
 
         String headerDeliverAndPayment = "Доставка і оплата";
         String titleOrderProcess = "Як оформити замовлення?";
@@ -98,4 +100,55 @@ public class HomePageTest extends TestInit {
 
     }
 
+    @Test
+    public void checkResultSearchField() {
+
+        HomePage homePage = new HomePage(getDriver());
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(getDriver());
+
+        String sumsungTV = "Телевізор Samsung";
+        int expectedSizeProdukts = 60;
+
+        openUrl(alloUrl);
+
+        homePage.enterValueSearchInput(sumsungTV);
+        homePage.clickSearchButton();
+
+        searchResultSamsungTV.viewModeButtonDisplayed();
+        int sizeProducts = searchResultSamsungTV.nameSearchedProduct().size();
+
+        Assert.assertEquals(sizeProducts, expectedSizeProdukts);
+
+        for (WebElement element : searchResultSamsungTV.nameSearchedProduct()) {
+            Assert.assertTrue(element.getText().contains(sumsungTV));
+            System.out.println(element);
+        }
+
+    }
+
+    @Test
+    public void checkSamsungTVSearchCommentsCount() {
+
+        HomePage homePage = new HomePage(getDriver());
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(getDriver());
+
+        String sumsungTV = "Телевізор Samsung";
+        int expectedNumberComments = 27;
+
+        openUrl(alloUrl);
+
+        homePage.enterValueSearchInput(sumsungTV);
+        homePage.clickSearchButton();
+
+        searchResultSamsungTV.viewModeButtonDisplayed();
+
+
+        for (WebElement element : searchResultSamsungTV.comentsNumbersButton()) {
+            String numberComment = element.getText();
+            int number = Integer.parseInt(numberComment);
+            if(number > expectedNumberComments){
+                System.out.println(number);
+            }
+        }
+    }
 }
