@@ -13,7 +13,7 @@ public class SearchResultSamsungTV extends BasePage {
     }
 
     private final String VIEW_MODE_BUTTON = "//button[@class='view-mode__button' and @title='Таблиця']";
-    private final String NAME_SEARCH_PRODUCT = "//div[@class='product-card__content']/a[@class='product-card__title']";
+    private final String NAME_SEARCH_PRODUCT = "//div[@class='products-layout__container products-layout--grid']//a[@class='product-card__title']";
     private final String COMMENTS_NUMBERS_BUTTON = "//span[@class='review-button__text review-button__text--count']";
 
     public WebElement viewModeButton() {
