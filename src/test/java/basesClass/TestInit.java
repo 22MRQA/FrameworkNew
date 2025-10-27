@@ -22,7 +22,7 @@ public class TestInit {
         ChromeOptions options = new ChromeOptions();
 
         // 🧠 Додаємо аргументи, щоб браузер коректно працював у CI (GitHub Actions)
-        options.addArguments("--headless=new");            // запускає браузер без UI
+//        options.addArguments("--headless=new");            // запускає браузер без UI
         options.addArguments("--no-sandbox");              // потрібне для Linux runner'а
         options.addArguments("--disable-dev-shm-usage");   // уникає обмежень пам’яті
         options.addArguments("--disable-gpu");             // вимикає GPU-рендеринг
