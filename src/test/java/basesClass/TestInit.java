@@ -25,6 +25,9 @@ public class TestInit {
         options.addArguments("--disable-gpu");             // вимикає GPU-рендеринг
         options.addArguments("--window-size=1920,1080");   // фіксований розмір екрана
 
+        String tempProfileDir = System.getProperty("java.io.tmpdir") + "/chrome-" + System.currentTimeMillis();
+        options.addArguments("--user-data-dir=" + tempProfileDir);
+
         WebDriver webDriver = new ChromeDriver();
         driver.set(webDriver);
     }
