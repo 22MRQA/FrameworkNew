@@ -3,6 +3,7 @@ package basesClass;
 // Це головний батьківський клас, в якому будемо виконувать створеня інеціалізацію нашего веб драйвера,\
 //який буде взаємодіїти з нашим браузером по типу користувача
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,6 +17,8 @@ public class TestInit {
     @BeforeMethod
     public void setUp() {
 
+        WebDriverManager.chromedriver().setup();
+
         ChromeOptions options = new ChromeOptions();
 
         // 🧠 Додаємо аргументи, щоб браузер коректно працював у CI (GitHub Actions)
@@ -24,11 +27,9 @@ public class TestInit {
         options.addArguments("--disable-dev-shm-usage");   // уникає обмежень пам’яті
         options.addArguments("--disable-gpu");             // вимикає GPU-рендеринг
         options.addArguments("--window-size=1920,1080");   // фіксований розмір екрана
+        options.addArguments("--incognito");
 
-        String tempProfileDir = System.getProperty("java.io.tmpdir") + "/chrome-" + System.currentTimeMillis();
-        options.addArguments("--user-data-dir=" + tempProfileDir);
-
-        WebDriver webDriver = new ChromeDriver();
+        WebDriver webDriver = new ChromeDriver(options);
         driver.set(webDriver);
     }
 
